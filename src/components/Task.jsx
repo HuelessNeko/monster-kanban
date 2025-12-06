@@ -7,13 +7,15 @@ export default function Task({ task, from, onRemove }) {
     <div
       draggable
       onDragStart={handleDragStart}
-      className="bg-white p-3 rounded-md shadow flex justify-between items-center cursor-grab hover:bg-gray-50 transition"
+      className="p-3 rounded-md shadow flex justify-between items-center cursor-grab transition"
+      style={{ backgroundColor: "var(--task-bg)", color: "var(--text)", border: "1px solid var(--border)" }}
     >
-      <p className="text-gray-700">{task.text}</p>
+      <p>{task.text}</p>
       {/* Remove Button */}
       <button
         onClick={() => onRemove(from, task.id)}
-        className="text-red-500 hover:text-red-700 text-sm ml-2"
+        className="text-sm ml-2"
+        style={{ color: "var(--danger)" }}
       >
         ✖
       </button>

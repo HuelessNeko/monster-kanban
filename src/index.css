@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+:root {
+	--bg: #f8fafc; /* sky-50 */
+	--card-bg: #fff;
+	--text: #374151; /* gray-700 */
+	--muted: #6b7280; /* gray-500 */
+	--border: #e5e7eb; /* gray-200 */
+	--input-bg: #ffffff;
+	--task-bg: #ffffff;
+	--danger: #ef4444; /* red-500 */
+	--pupil: #000;
+
+	/* column backgrounds */
+	--col-backlog: #fecaca; /* red-200 */
+	--col-doing: #fed7aa; /* orange-200 */
+	--col-review: #bbf7d0; /* green-200 */
+	--col-done: #bfdbfe; /* blue-200 */
+
+	/* monster colors */
+	--monster-backlog: #ef4444; /* red-500 */
+	--monster-doing: #f97316; /* orange-500 */
+	--monster-review: #10b981; /* green-500 */
+	--monster-done: #3b82f6; /* blue-500 */
+}
+
+[data-theme="dark"] {
+	--bg: #0b1220;
+	--card-bg: #0f1724;
+	--text: #e6eef8;
+	--muted: #94a3b8;
+	--border: #1f2937;
+	--input-bg: #0b1220;
+	--task-bg: #0b1220;
+	--danger: #f87171;
+	--pupil: #fff;
+
+	--col-backlog: #7f1d1d; /* darker red */
+	--col-doing: #7c2d12; /* darker orange */
+	--col-review: #064e3b; /* darker green */
+	--col-done: #1e3a8a; /* darker blue */
+
+	--monster-backlog: #b91c1c; /* red-700 */
+	--monster-doing: #ea580c; /* orange-600 */
+	--monster-review: #059669; /* green-600 */
+	--monster-done: #2563eb; /* blue-600 */
+}
+
+html, body, #root {
+	height: 100%;
+}
+
+body {
+	background-color: var(--bg);
+	color: var(--text);
+}

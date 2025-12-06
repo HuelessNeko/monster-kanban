@@ -4,9 +4,18 @@ import tasksRouter from "./routes/tasks.js";
 
 const app = express();
 
+// Allow local dev origins for convenience. In production, restrict this appropriately.
 app.use(
     cors({
-        origin: "http://localhost:5173", // your Vite dev URL
+        origin: (origin, cb) => {
+            // allow requests with no origin (e.g. curl, mobile apps)
+            if (!origin) return cb(null, true);
+            // allow localhost on common dev ports
+            if (origin.startsWith("http://localhost") || origin.startsWith("http://127.0.0.1") || origin.startsWith("http://[::1]")) {
+                return cb(null, true);
+            }
+            cb(new Error("Not allowed by CORS"));
+        },
     })
 );
 

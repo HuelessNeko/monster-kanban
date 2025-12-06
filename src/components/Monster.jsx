@@ -40,35 +40,40 @@ export default function Monster({ color, height = "h-24" }) {
 
   return (
     <div
-      className={`${color} ${height} relative rounded-t-full rounded-b-md flex justify-center items-start pt-2 mb-4`}
-      style={{ width: "5rem" }}
+      className={`${height} relative rounded-t-full rounded-b-md flex justify-center items-start pt-2 mb-4`}
+      style={{ width: "5rem", backgroundColor: `var(--monster-${color})` }}
     >
   
       {/* Eyes */}
       <div className="flex space-x-1 mt-2">
         <div
-          className="relative w-5 h-5 bg-white rounded-full overflow-hidden"
+          className="relative w-5 h-5 rounded-full overflow-hidden"
           ref={setEyeRef}
+          style={{ backgroundColor: "var(--card-bg)" }}
         >
           <div
             ref={setPupilRef}
-            className="absolute w-2 h-2 bg-black rounded-full top-1.5 left-1.5 transition-transform duration-75 ease-linear"
+            className="absolute w-2 h-2 rounded-full top-1.5 left-1.5 transition-transform duration-75 ease-linear"
+            style={{ backgroundColor: "var(--pupil)" }}
           />
         </div>
         <div
-          className="relative w-5 h-5 bg-white rounded-full overflow-hidden"
+          className="relative w-5 h-5 rounded-full overflow-hidden"
           ref={setEyeRef}
+          style={{ backgroundColor: "var(--card-bg)" }}
         >
           <div
             ref={setPupilRef}
-            className="absolute w-2 h-2 bg-black rounded-full top-1.5 left-1.5 transition-transform duration-75 ease-linear"
+            className="absolute w-2 h-2 rounded-full top-1.5 left-1.5 transition-transform duration-75 ease-linear"
+            style={{ backgroundColor: "var(--pupil)" }}
           />
         </div>
       </div>
 
-      <div 
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 w-8 h-1 bg-black rounded-full">
-      </div>
+      <div
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 w-8 h-1 rounded-full"
+        style={{ backgroundColor: "var(--pupil)" }}
+      />
     </div>
   );
 }

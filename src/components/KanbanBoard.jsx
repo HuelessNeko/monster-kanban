@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Column from "./Column";
-import { getTasks, addTask as addTaskAPI } from "../api/tasks";
+import { getTasks, addTask as addTaskAPI, updateTask, deleteTask } from "../api/tasks";
 
 export default function KanbanBoard() {
   const [boards, setBoards] = useState({
@@ -36,7 +36,9 @@ export default function KanbanBoard() {
   // Add a new task
   const addTask = async (column, text) => {
     if (!text) return;
+
     const status = column === "backlog" ? "todo" : column;
+
     try {
       const newTask = await addTaskAPI(text, status);
       setBoards((prev) => {
@@ -55,8 +57,13 @@ export default function KanbanBoard() {
   // Move task between columns (update status)
   const moveTask = async (from, to, task) => {
     if (from === to) return;
+
     const newStatus = to === "backlog" ? "todo" : to;
+
     try {
+
+      await updateTask(task.id, { title: task.text, status: newStatus });
+
       // TODO: change tasks from old status to new status
       setBoards((prev) => {
         const newBoards = { ...prev };
@@ -72,6 +79,7 @@ export default function KanbanBoard() {
   // Remove task (delete)
   const removeTask = async (column, id) => {
     try {
+      await deleteTask(id);
       // TODO: remove task
       setBoards((prev) => {
         const newBoards = { ...prev };
@@ -87,43 +95,43 @@ export default function KanbanBoard() {
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full max-w-6xl">
       <Column
         title="Backlog"
-        color="bg-red-200"
+        color="backlog"
         tasks={boards.backlog}
         onMove={moveTask}
         onAdd={addTask}
         onRemove={removeTask}
         name="backlog"
-        monster={{ color: "bg-red-500", height: "h-16" }}
+        monster={{ color: "backlog", height: "h-16" }}
       />
       <Column
         title="Doing"
-        color="bg-gray-200"
+        color="doing"
         tasks={boards.doing}
         onMove={moveTask}
         onAdd={addTask}
         onRemove={removeTask}
         name="doing"
-        monster={{ color: "bg-gray-500", height: "h-16" }}
+        monster={{ color: "doing", height: "h-16" }}
       />
       <Column
         title="Review"
-        color="bg-gray-200"
+        color="review"
         tasks={boards.review}
         onMove={moveTask}
         onAdd={addTask}
         onRemove={removeTask}
         name="review"
-        monster={{ color: "bg-gray-500", height: "h-16" }}
+        monster={{ color: "review", height: "h-16" }}
       />
       <Column
         title="Done"
-        color="bg-gray-200"
+        color="done"
         tasks={boards.done}
         onMove={moveTask}
         onAdd={addTask}
         onRemove={removeTask}
         name="done"
-        monster={{ color: "bg-gray-500", height: "h-16" }}
+        monster={{ color: "done", height: "h-16" }}
       />
     </div>
   );
