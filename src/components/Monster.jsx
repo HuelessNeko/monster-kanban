@@ -43,6 +43,7 @@ export default function Monster({ color, height = "h-24" }) {
       className={`${color} ${height} relative rounded-t-full rounded-b-md flex justify-center items-start pt-2 mb-4`}
       style={{ width: "5rem" }}
     >
+  
       {/* Eyes */}
       <div className="flex space-x-1 mt-2">
         <div
@@ -63,6 +64,10 @@ export default function Monster({ color, height = "h-24" }) {
             className="absolute w-2 h-2 bg-black rounded-full top-1.5 left-1.5 transition-transform duration-75 ease-linear"
           />
         </div>
+      </div>
+
+      <div 
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 w-8 h-1 bg-black rounded-full">
       </div>
     </div>
   );
